@@ -1,11 +1,11 @@
 import React from 'react';
 
-import MainContainer from '@/container/Main.container';
+import MemberContainer from '@/container/Member/Member.container';
 
 const MainPage = () => {
   return (
     <>
-      <MainContainer /> 
+      <MemberContainer /> 
     </>
   );
 };

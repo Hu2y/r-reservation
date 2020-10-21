@@ -6,7 +6,7 @@ export const fetchMemberStart = () => ({
   payload: null
 });
 
-export const fetchMemberSuccess = (members: IMember[]) => ({
+export const fetchMemberSuccess = (members: any) => ({
   type: MemberActionTypes.FETCH_MEMBER_SUCCESS,
   payload: members
 });

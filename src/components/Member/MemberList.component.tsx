@@ -9,7 +9,7 @@ import { RootState } from '@/store/rootReducer';
 import IMember from '../../@types/Member';
 
 const MemberList = () => {
-  const { members }: { members: IMember[]} = useSelector((state: RootState) => state.member)
+  const { members }: { members: any} = useSelector((state: RootState) => state.member)
 
   const dispatch = useDispatch();
 
@@ -17,13 +17,25 @@ const MemberList = () => {
     dispatch(fetchMemberStart());
   }, [])
 
-  console.log(members)
+  const partList = members.map((partData: any) => {
+    const [partName, teamsData] = partData;
+    console.log(partName,teamsData)
+    // return <PartBox key={partName} {...{ language, partName, teamsData }} />;
+  });
+
   return (
     <div>
       { members.length !== 0 ? (
-        members.map((memberData, index) => {
-          const lastElement = index === members.length - 1;
-          return <Member {...memberData} key={index} />
+        members.map((memberData: any, index: any) => {
+          // 무한스크롤링이 필요한가?
+          // const lastElement = index === members.length - 1;
+
+          // console.log(memberData)
+          return (
+            <div>
+              {partList}
+            </div>
+          )
         })
       ) : (
         <div>error</div>

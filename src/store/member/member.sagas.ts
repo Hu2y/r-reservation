@@ -1,16 +1,21 @@
 import { takeLatest, call, put, all, select } from 'redux-saga/effects';
+import axios from 'axios';
+
+import { makePartsMap } from '../../utils/utils';
 
 import MemberActionTypes from './member.types';
 import { fetchMemberSuccess, fetchMemberFailure} from './member.actions';
 
-import axios from 'axios';
+
+
 
 export function* fetchMember() {
   try {
     const {
       data: { returnData }
     } = yield axios.get(`${process.env.SERVER}`);
-    yield put(fetchMemberSuccess(returnData));
+    const makePartData = makePartsMap(returnData);
+    yield put(fetchMemberSuccess(makePartData));
   } catch (error) {
     yield put(fetchMemberFailure(error.message));
   }

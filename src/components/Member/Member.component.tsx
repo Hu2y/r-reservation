@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MemberWrap, Img, TopSection, BottomSection } from './MemberList.styles';
+import { MemberWrap, Img, TopSection, BottomSection, Name, Email } from './MemberList.styles';
 
 import IMember from '../../@types/Member';
 
@@ -14,8 +14,8 @@ const Member = (props: IMemberProp) => {
         <Img src={picture} alt={name}/>
       </TopSection>
       <BottomSection>
-        <div>{name}</div>
-        <div>{email}</div>
+        <Name>{name}</Name>
+        <Email>{email}</Email>
       </BottomSection>
     </MemberWrap>
   );
