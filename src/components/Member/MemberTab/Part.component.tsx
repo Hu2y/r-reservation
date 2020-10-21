@@ -1,21 +1,26 @@
 import React from 'react';
 
 const Part = ({partName, teamData}: any) => {
-  console.log(teamData)
-  for(let name in teamData) {
-    console.log(name);
+  const teamList: any = [];
+  for(let team in teamData) {
+    console.log(team, teamData[team].length);
+    teamList.push(
+      <li key={team}>
+        <a href={`#${team}`}>{team} ({teamData[team].length}) </a>
+      </li>
+    )
+    // const teamList = teamData[name].map((user: any) => {
+    //   console.log(user)
+    //   return <li key={name}>{name}</li>
+    // })
   }
-  // const teamList = teamData.map((team: any) => {
-  //   const [teamName, memberData] = team;
-  //   console.log(teamName, memberData)
-  // })
   return (
     <>
       <h3>
-        {/* <a href={`#${partName}`}>{partName}</a> */}
+        <a href={`#${partName}`}>{partName}</a>
       </h3>
       <ul>
-        {/* {teamList} */}
+        {teamList}
       </ul>
     </>
   );

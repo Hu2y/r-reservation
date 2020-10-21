@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
     }
     
     a {
-        color: #fff; 
+        color: #000; 
         text-decoration: none; 
         outline: none
     }
