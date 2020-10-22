@@ -1,12 +1,14 @@
 import React from 'react';
 
-import MemberContainer from '@/container/Member/Member.container';
+import ScheduleContainer from '@/container/Schedule/Schedule.container';
+
+import { PageWrap } from './Page.styles';
 
 const MainPage = () => {
   return (
-    <>
-      <MemberContainer /> 
-    </>
+    <PageWrap>
+      <ScheduleContainer /> 
+    </PageWrap>
   );
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { MemberWrap, Img, TopSection, BottomSection, Name, Email } from './MemberList.styles';
+import { MemberWrap, Img, TopSection, BottomSection, Name, Email } from './MemberCard.styles';
 
-import IMember from '../../@types/Member';
+import IMember from '../../../@types/Member';
 
 export type IMemberProp = IMember;
 
-const Member = (props: IMemberProp) => {
+const MemberCard = (props: IMemberProp) => {
   const { name, email, picture } = props;
   return (
     <MemberWrap>
@@ -21,4 +21,4 @@ const Member = (props: IMemberProp) => {
   );
 };
 
-export default Member;
+export default MemberCard;

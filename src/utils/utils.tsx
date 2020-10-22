@@ -3,6 +3,7 @@ import IMember from '../@types/Member';
 export const makePartsMap = (data: Array<IMember>) => {
   if(!data) return;
   const partsMap = new Map();
+  
   data.forEach((user) => {
     if (!partsMap.get(user.part)) {
       partsMap.set(user.part, {});

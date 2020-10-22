@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "@syncfusion/ej2-react-schedule": "^18.3.42",
     "@types/react-redux": "^7.1.9",
     "axios": "^0.19.2",
     "css-loader": "^3.5.3",
@@ -28,7 +29,8 @@
     "redux-saga": "^1.1.3",
     "style-loader": "^1.2.1",
     "styled-components": "^5.2.0",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.2",
+    "use-deep-compare-effect": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",

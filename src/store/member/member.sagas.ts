@@ -6,9 +6,6 @@ import { makePartsMap } from '../../utils/utils';
 import MemberActionTypes from './member.types';
 import { fetchMemberSuccess, fetchMemberFailure} from './member.actions';
 
-
-
-
 export function* fetchMember() {
   try {
     const {

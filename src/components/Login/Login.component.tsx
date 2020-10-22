@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { PageWrap } from './Page.styles';
-
 const Login = () => {
   return (
-    <PageWrap>
-      login page
-    </PageWrap>
+    <div>
+      <button>로그인</button>
+    </div>
   );
 };
 

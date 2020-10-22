@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   members: [],
   isFetching: false,
   errorMessage: undefined,
+  onceFetching: false,
 };
 
 const memberReducer = (state = INITIAL_STATE, action: MemberAction) => {
@@ -18,7 +19,8 @@ const memberReducer = (state = INITIAL_STATE, action: MemberAction) => {
       return {
         ...state,
         isFetching: false,
-        members: action.payload
+        members: action.payload,
+        onceFetching: true,
       };
     case MemberActionTypes.FETCH_MEMBER_FAILURE:
       return {
