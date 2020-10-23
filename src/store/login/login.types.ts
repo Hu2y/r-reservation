@@ -1,0 +1,7 @@
+enum LoginActionTypes {
+  FETCH_LOGIN_START = 'FETCH_LOGIN_START',
+  FETCH_LOGIN_SUCCESS = 'FETCH_LOGIN_SUCCESS',
+  FETCH_LOGIN_FAILURE = 'FETCH_LOGIN_FAILURE',
+}
+
+export default LoginActionTypes;

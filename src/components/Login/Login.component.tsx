@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Login = () => {
+const Login = ({ onGoogle }: any) => {
   return (
     <div>
-      <button>로그인</button>
+      <button onClick={onGoogle}>로그인</button>
     </div>
   );
 };
