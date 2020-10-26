@@ -3,9 +3,13 @@ import { LoginAction } from './login.actions';
 
 const INITIAL_STATE = {
   user: [],
+  youtube: [],
   tokenId: '',
+  accessToken: '',
   isFetching: false,
-  errorMessage: undefined,
+  loginErrorMessage: undefined,
+  youtubeErrorMessage: undefined,
+  
 };
 
 const LoginReducer = (state = INITIAL_STATE, action: LoginAction) => {
@@ -20,14 +24,32 @@ const LoginReducer = (state = INITIAL_STATE, action: LoginAction) => {
         ...state,
         isFetching: false,
         user: action.payload.profileObj,
-        tokenId: action.payload.tokenId 
+        tokenId: action.payload.tokenId,
+        accessToken: action.payload.accessToken
       };
     case LoginActionTypes.FETCH_LOGIN_FAILURE:
       return {
         ...state,
         isFetching: false,
-        errorMessage: action.payload
+        loginErrorMessage: action.payload
       };
+    case LoginActionTypes.FETCH_YOUTUBE_CHECK_START:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case LoginActionTypes.FETCH_YOUTUBE_CHECK_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        youtube: action.payload
+      }
+    case LoginActionTypes.FETCH_YOUTUBE_CHECK_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        youtubeErrorMessage: action.payload
+      }
     default:
       return state;
   };
