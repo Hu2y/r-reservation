@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import Login from '@/components/Login/Login.component';
 
 import { pathUri } from '@/modules/define/path';
+import { pathApi } from '@/modules/define/api';
+import { login } from '@/modules/define/login';
 import { fetchLoginFailure, fetchLoginSuccess, fetchYoutubeCheckStart } from '@/store/login/login.actions';
 import { RootState } from '@/store/rootReducer';
 
@@ -26,7 +28,7 @@ const LoginContainer = () => {
   const hangleGoogleFail = (res: any) => {
     console.log('google login fail: ', res);
     dispatch(fetchLoginFailure(res));
-    if(res.error === 'idpiframe_initialization_failed' || res.error === 'popup_closed_by_user') {
+    if(res.error === login.message.error.idpiframe || res.error === login.message.error.popupClosed) {
       // setGlobalContext({...globalContext, toast: { display: true, message: '쿠키가 차단 되었습니다. 쿠키를 허용해주세요.', type: messageType.info}});
     }
   }
@@ -37,7 +39,7 @@ const LoginContainer = () => {
     onFailure: hangleGoogleFail,
     redirectUri: `${window.location.href}`,
     responseType: "token",
-    scope: "https://www.googleapis.com/auth/youtube",
+    scope: `${pathApi.youtube.scope}`,
   });
 
   return (
