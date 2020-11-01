@@ -8,14 +8,14 @@ export const UserWrap = styled.div`
   margin: 0 0.8rem 1rem 0;
   padding: 0.5rem 1rem;
   /* width: 200px; */
-  border: 1px solid #f1f1f1;
-  box-sizing: border-box;
-  transition: border 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+  /* border: 1px solid #f1f1f1; */
+  /* box-sizing: border-box; */
+  /* transition: border 0.3s, box-shadow 0.3s; */
+  /* cursor: pointer; */
 
   :hover {
-    border-color: transparent;
-    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.15);
+    /* border-color: transparent;
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.15); */
   }
 `;
 

@@ -2,7 +2,7 @@ import IPath  from '@/@types/Path.ts';
 
 export const pathUri: IPath = {
   login: '/login',
-  main: '/',
+  main: '/reference',
   member: '/member'
 };
 

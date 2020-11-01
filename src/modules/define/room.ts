@@ -1,5 +1,5 @@
 export const roomInfo = {
-  room: [
+  rooms: [
     {
       layer: "9층",
       reservationRooms: [
