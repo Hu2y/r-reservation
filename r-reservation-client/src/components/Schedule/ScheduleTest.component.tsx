@@ -1,16 +1,25 @@
-import * as ReactDOM from 'react-dom';
-import * as React from 'react';
+import React, { useEffect } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import {
   Day, WorkWeek, Month, ScheduleComponent, TreeViewArgs, ResourcesDirective, ResourceDirective,
   ViewsDirective, ViewDirective, ResourceDetails, Inject, TimelineViews, Resize, DragAndDrop
 } from '@syncfusion/ej2-react-schedule';
-import './group-editing.css';
+
 import { extend } from '@syncfusion/ej2-base';
 import * as dataSource from './datasource.json';
 
+import MatchParams from '@/@types/MatchParams';
+
 import { ScheduleWrap } from './Schedule.styles';
+import './group-editing.css';
 
 const ScheduleTest = () =>  {
+  const { params: { id }} = useRouteMatch<MatchParams>();
+
+  useEffect(() => {
+    console.log(id);
+  }, []); 
+
   const data: Object[] = extend([], (dataSource as any).resourceConferenceData, null!, true) as Object[];
   const resourceData: Object[] = [
     { Text: '회의실 소', Id: 1, Color: '#1aaa55' },

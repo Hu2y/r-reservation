@@ -1,0 +1,13 @@
+{
+  "webServer": {
+    "host": "localhost",
+    "port": 3030
+  },
+  "databaseServer": {
+    "host": "localhost",
+    "port": 27017
+  },
+  "databaseUsersReset": false,
+  "isDev": true,
+  "secret": "TeStSeCrEtKey"
+}
