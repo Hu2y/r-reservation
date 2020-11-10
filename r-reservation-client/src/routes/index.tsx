@@ -12,6 +12,7 @@ const Routes = () => (
 		{/* <Route exact path={pathUri.main} component={MainPage} /> */}
 		<Route exact path={pathUri.member} component={MemberPage} />
 		<Route path={`${pathUri.main}/:id`} component={MainPage} />
+		<Route component={() => <Redirect to={pathUri.login} />} />
 	</Switch>
 );
 

@@ -8,6 +8,8 @@ import './group-editing.css';
 import { extend } from '@syncfusion/ej2-base';
 import * as dataSource from './datasource.json';
 
+import { ScheduleWrap } from './Schedule.styles';
+
 const ScheduleTest = () =>  {
   const data: Object[] = extend([], (dataSource as any).resourceConferenceData, null!, true) as Object[];
   const resourceData: Object[] = [
@@ -50,37 +52,39 @@ const ScheduleTest = () =>  {
   }
 
   return (
-    <div className='schedule-control-section'>
-      <div className='col-lg-12 control-section'>
-        <div className='control-wrapper'>
-          <ScheduleComponent cssClass='group-editing' width='100%' height='650px' selectedDate={new Date(2018, 5, 5)}
-            currentView='WorkWeek' resourceHeaderTemplate={resourceHeaderTemplate.bind(this)}
-            eventSettings={{
-              dataSource: data,
-              fields: {
-                subject: { title: 'Conference Name', name: 'Subject' },
-                description: { title: 'Summary', name: 'Description' },
-                startTime: { title: 'From', name: 'StartTime' },
-                endTime: { title: 'To', name: 'EndTime' }
-              }
-            }}
-            group={{ allowGroupEdit: true, resources: ['Conferences'] }} >
-            <ResourcesDirective>
-              <ResourceDirective field='ConferenceId' title='Attendees' name='Conferences' allowMultiple={true}
-                dataSource={resourceData} textField='Text' idField='Id' colorField='Color'>
-              </ResourceDirective>
-            </ResourcesDirective>
-            <ViewsDirective>
-              <ViewDirective option='Day' startHour='07:00' endHour='19:00'/>
-              <ViewDirective option='WorkWeek' startHour='07:00' endHour='19:00'/>
-              <ViewDirective option='Month' eventTemplate={monthEventTemplate.bind(this)} />
-              <ViewDirective option='TimelineWeek' startHour='07:00' endHour='19:00'/>
-            </ViewsDirective>
-            <Inject services={[Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop]} />
-          </ScheduleComponent>
+    <ScheduleWrap>
+      <div className='schedule-control-section'>
+        <div className='col-lg-12 control-section'>
+          <div className='control-wrapper'>
+            <ScheduleComponent cssClass='group-editing' width='100%' selectedDate={new Date(2018, 5, 5)}
+              currentView='WorkWeek' resourceHeaderTemplate={resourceHeaderTemplate.bind(this)}
+              eventSettings={{
+                dataSource: data,
+                fields: {
+                  subject: { title: 'Conference Name', name: 'Subject' },
+                  description: { title: 'Summary', name: 'Description' },
+                  startTime: { title: 'From', name: 'StartTime' },
+                  endTime: { title: 'To', name: 'EndTime' }
+                }
+              }}
+              group={{ allowGroupEdit: true, resources: ['Conferences'] }} >
+              <ResourcesDirective>
+                <ResourceDirective field='ConferenceId' title='Attendees' name='Conferences' allowMultiple={true}
+                  dataSource={resourceData} textField='Text' idField='Id' colorField='Color'>
+                </ResourceDirective>
+              </ResourcesDirective>
+              <ViewsDirective>
+                <ViewDirective option='Day' startHour='07:00' endHour='19:00'/>
+                <ViewDirective option='WorkWeek' startHour='07:00' endHour='19:00'/>
+                <ViewDirective option='Month' eventTemplate={monthEventTemplate.bind(this)} />
+                <ViewDirective option='TimelineWeek' startHour='07:00' endHour='19:00'/>
+              </ViewsDirective>
+              <Inject services={[Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop]} />
+            </ScheduleComponent>
+          </div>
         </div>
       </div>
-    </div>
+    </ScheduleWrap>
   );
 }
 
