@@ -14,8 +14,8 @@ export function* fetchLogin() {
     yield put(fetchLoginSuccess( returnData ));
   } catch (error) {
     yield put(fetchLoginFailure(error.message));
-  }
-}
+  };
+};
 
 export function* fetchYoutube() {
   const { user: { accessToken }} = yield select();
@@ -28,17 +28,17 @@ export function* fetchYoutube() {
     yield put(fetchYoutubeCheckSuccess(data));
   } catch (error) {
     yield put(fetchYoutubeCheckFailure(error.message));
-  }
-}
+  };
+};
 
 export function* fetchLoginStart() {
   yield takeLatest(LoginActionTypes.FETCH_LOGIN_START, fetchLogin);
-}
+};
 
 export function* fetchYoutubeCheckStart() {
   yield takeLatest(LoginActionTypes.FETCH_YOUTUBE_CHECK_START, fetchYoutube);
-}
+};
 
 export function* loginSagas() {
   yield all([call(fetchLoginStart), call(fetchYoutubeCheckStart)]);
-}
+};

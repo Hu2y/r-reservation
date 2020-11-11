@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Day, WorkWeek, Month, ScheduleComponent, TreeViewArgs, ResourcesDirective, ResourceDirective,
   ViewsDirective, ViewDirective, ResourceDetails, Inject, TimelineViews, Resize, DragAndDrop
 } from '@syncfusion/ej2-react-schedule';
-
+import { RootState } from '@/store/rootReducer';
+import { fetchScheduleStart } from '@/store/schedule/schedule.action';
+import { searchReservationInfo } from '@/utils/utils';
 import { extend } from '@syncfusion/ej2-base';
 import * as dataSource from './datasource.json';
 
@@ -14,13 +17,30 @@ import { ScheduleWrap } from './Schedule.styles';
 import './group-editing.css';
 
 const ScheduleTest = () =>  {
+  const dispatch = useDispatch();
   const { params: { id }} = useRouteMatch<MatchParams>();
+  const { reservation } : { reservation: any } = useSelector((state: RootState) => state.schedule); 
+  let data: Object[] = [];
 
   useEffect(() => {
-    console.log(id);
+    dispatch(fetchScheduleStart());
   }, []); 
 
-  const data: Object[] = extend([], (dataSource as any).resourceConferenceData, null!, true) as Object[];
+  useEffect(() => {
+    if(!reservation.length) return;
+    const scheduleData = searchReservationInfo(reservation, id);
+    // data = scheduleData;
+    let data: Object[] = extend([], scheduleData, null!, true) as Object[];
+    console.log('1',data);
+    // console.log('😙😙😙😙😙', scheduleData);
+  }, [id, reservation]);
+
+
+  console.log('2',data);
+  // data = extend([], (dataSource as any).resourceConferenceData, null!, true) as Object[];
+
+  console.log('😌😌😌😌😌', data);
+
   const resourceData: Object[] = [
     { Text: '회의실 소', Id: 1, Color: '#1aaa55' },
     { Text: '회의실 중', Id: 2, Color: '#357cd2' },
@@ -62,7 +82,7 @@ const ScheduleTest = () =>  {
 
   return (
     <ScheduleWrap>
-      <div className='schedule-control-section'>
+      {<div className='schedule-control-section'>
         <div className='col-lg-12 control-section'>
           <div className='control-wrapper'>
             <ScheduleComponent cssClass='group-editing' width='100%' selectedDate={new Date(2018, 5, 5)}
@@ -92,7 +112,7 @@ const ScheduleTest = () =>  {
             </ScheduleComponent>
           </div>
         </div>
-      </div>
+      </div>}
     </ScheduleWrap>
   );
 }

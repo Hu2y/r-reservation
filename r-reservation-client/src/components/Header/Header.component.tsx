@@ -11,7 +11,7 @@ const Header = () => {
       </div>
       <div>
         <ListWrap>
-          <List><Link to="/reference/9layer">회의실 현황</Link></List>
+          <List><Link to="/reference/9">회의실 현황</Link></List>
           <List><Link to="/member">사원 정보</Link></List>
         </ListWrap>
       </div>

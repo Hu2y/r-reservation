@@ -17,7 +17,7 @@ const LoginContainer = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if(tokenId) history.push(`${pathUri.main}/9layer`);
+    if(tokenId) history.push(`${pathUri.main}/9`);
   }, [tokenId]);
 
   const handleGoogleSign = ({ profileObj,tokenId, accessToken }: any) => {

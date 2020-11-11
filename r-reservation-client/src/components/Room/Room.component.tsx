@@ -13,7 +13,7 @@ const Room = () => {
           roomInfo.rooms.map((room, index) => {
             return (
               <ButtonWrap key={index}>
-                <Link to={`/reference/${room.layer}`}>
+                <Link to={`/reference/${room.id}`}>
                   <LayerButton>{room.layer}</LayerButton>
                 </Link>
               </ButtonWrap>

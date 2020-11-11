@@ -33,3 +33,8 @@ export const searchUserTeam = (email: string, members: any) => {
   });
   return targetTeam;
 };
+
+export const searchReservationInfo = (reservation: any, layer: string) => {
+  const result = reservation.filter((room: any) => room.layer == layer);
+  return result[0].scheduleData;
+};
