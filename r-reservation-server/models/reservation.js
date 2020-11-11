@@ -10,9 +10,11 @@ const roomSchema = new mongoose.Schema({
 });
 
 const reservationSchema = new mongoose.Schema({
-  _id: { $oid: String },
+  _id: { $oid: mongoose.Schema.Types.ObjectId },
   layer: Number,
   scheduleData: [roomSchema]
 });
 
-module.exports = mongoose.model('reservation', reservationSchema);
+reservationSchema.set("collection", "reservation"); 
+
+module.exports = mongoose.model("Reservation", reservationSchema);

@@ -11,13 +11,14 @@ const route = require('./routes');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api', route);
+app.use("/api", route);
 
 // Node.js의 native Promise 사용
 mongoose.Promise = global.Promise;
 
 // CONNECT TO MONGODB SERVER
-mongoose.connect('mongodb://sanghun:tkdgnsdl0@127.0.0.1:27017', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb://sanghun:tkdgnsdl0@127.0.0.1:27017", 
+  {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('Successfully connected to mongodb'))
   .catch(e => console.error(e));
 
