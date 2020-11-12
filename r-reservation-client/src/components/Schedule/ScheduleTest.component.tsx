@@ -6,7 +6,7 @@ import {
   ViewsDirective, ViewDirective, ResourceDetails, Inject, TimelineViews, Resize, DragAndDrop
 } from '@syncfusion/ej2-react-schedule';
 import { RootState } from '@/store/rootReducer';
-import { fetchScheduleStart } from '@/store/schedule/schedule.action';
+import { fetchScheduleStart, getLayerSchedule } from '@/store/schedule/schedule.action';
 import { searchReservationInfo } from '@/utils/utils';
 import { extend } from '@syncfusion/ej2-base';
 import * as dataSource from './datasource.json';
@@ -19,27 +19,19 @@ import './group-editing.css';
 const ScheduleTest = () =>  {
   const dispatch = useDispatch();
   const { params: { id }} = useRouteMatch<MatchParams>();
-  const { reservation } : { reservation: any } = useSelector((state: RootState) => state.schedule); 
-  let data: Object[] = [];
-
+  const { schedule: { info }, layerSchedule} : { schedule: any, layerSchedule: any } = useSelector((state: RootState) => state.schedule); 
+  
   useEffect(() => {
     dispatch(fetchScheduleStart());
   }, []); 
 
   useEffect(() => {
-    if(!reservation.length) return;
-    const scheduleData = searchReservationInfo(reservation, id);
+    if(info === undefined) return;
+    const scheduleData = searchReservationInfo(info, id);
     // data = scheduleData;
-    let data: Object[] = extend([], scheduleData, null!, true) as Object[];
-    console.log('1',data);
-    // console.log('😙😙😙😙😙', scheduleData);
-  }, [id, reservation]);
-
-
-  console.log('2',data);
-  // data = extend([], (dataSource as any).resourceConferenceData, null!, true) as Object[];
-
-  console.log('😌😌😌😌😌', data);
+    const data = extend([], scheduleData, null!, true) as Object[];
+    dispatch(getLayerSchedule(data));
+  }, [id, info]);
 
   const resourceData: Object[] = [
     { Text: '회의실 소', Id: 1, Color: '#1aaa55' },
@@ -79,16 +71,18 @@ const ScheduleTest = () =>  {
       </div>
     );
   }
-
+  console.log(layerSchedule)
   return (
     <ScheduleWrap>
-      {<div className='schedule-control-section'>
+      {
+        layerSchedule.length ? (
+          <div className='schedule-control-section'>
         <div className='col-lg-12 control-section'>
           <div className='control-wrapper'>
             <ScheduleComponent cssClass='group-editing' width='100%' selectedDate={new Date(2018, 5, 5)}
               currentView='WorkWeek' resourceHeaderTemplate={resourceHeaderTemplate.bind(this)}
               eventSettings={{
-                dataSource: data,
+                dataSource: layerSchedule,
                 fields: {
                   subject: { title: 'Conference Name', name: 'Subject' },
                   description: { title: 'Summary', name: 'Description' },
@@ -112,7 +106,11 @@ const ScheduleTest = () =>  {
             </ScheduleComponent>
           </div>
         </div>
-      </div>}
+      </div>
+        ) : (
+        <div>test</div>
+        )
+      }
     </ScheduleWrap>
   );
 }

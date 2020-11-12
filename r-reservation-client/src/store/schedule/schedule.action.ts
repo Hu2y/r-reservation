@@ -15,7 +15,13 @@ export const fetchScheduleFailure = (errorMessage: string) => ({
   payload: errorMessage
 });
 
+export const getLayerSchedule = (layer: any) => ({
+  type: ScheduleActionTypes.GET_LAYER_SCHEDULE,
+  payload: layer
+});
+
 export type ScheduleAction =
   | ReturnType<typeof fetchScheduleStart>
   | ReturnType<typeof fetchScheduleSuccess>
   | ReturnType<typeof fetchScheduleFailure>
+  | ReturnType<typeof getLayerSchedule>

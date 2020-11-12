@@ -6,7 +6,7 @@ import { fetchScheduleSuccess, fetchScheduleFailure } from './schedule.action';
 
 export function* fetchSchedule() {
   try {
-    const { data } = yield axios.get(`${process.env.RESERVATION_SERVER}`);
+    const { data } = yield axios.get(`${process.env.RESERVATION_SERVER}/schedule`);
     yield put(fetchScheduleSuccess(data));
   } catch (error) {
     yield put(fetchScheduleFailure(error))

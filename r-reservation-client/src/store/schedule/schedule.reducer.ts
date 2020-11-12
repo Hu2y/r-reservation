@@ -2,9 +2,10 @@ import ScheduleActionTypes from './schedule.types';
 import { ScheduleAction } from './schedule.action';
 
 const INITIAL_STATE = {
-  reservation: [],
+  schedule: [],
   isFetching: false,
-  errorMessage: ''
+  errorMessage: '',
+  layerSchedule: []
 };
 
 const ScheduleReducer = (state = INITIAL_STATE, action: ScheduleAction) => {
@@ -17,7 +18,7 @@ const ScheduleReducer = (state = INITIAL_STATE, action: ScheduleAction) => {
     case ScheduleActionTypes.FETCH_SCHEDULE_SUCCESS:
       return {
         ...state,
-        reservation: action.payload,
+        schedule: action.payload,
         isFetching: false
       };
     case ScheduleActionTypes.FETCH_SCHEDULE_FAILURE:
@@ -26,6 +27,11 @@ const ScheduleReducer = (state = INITIAL_STATE, action: ScheduleAction) => {
         errorMessage: action.payload,
         isFetching: false
       };
+    case ScheduleActionTypes.GET_LAYER_SCHEDULE:
+      return {
+        ...state,
+        layerSchedule: action.payload
+      }
     default:
       return state;
   };

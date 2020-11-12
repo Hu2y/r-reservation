@@ -1,4 +1,4 @@
-const Reservation = require('../../models/reservation');
+const Sechedule = require('../../models/schedule');
 
 // const controller = {
 //   findReservations : async() => {
@@ -12,9 +12,9 @@ const Reservation = require('../../models/reservation');
 
 
 
-exports.reservation = (req, res) => {
-  Reservation.find({}, (err, room) => {
+exports.searchSchedule = (req, res) => {
+  Sechedule.find({}, (err, scheduleInfo) => {
     if(err) return res.status(500).json({ result: false, message: err});
-    res.json({result: true, data: room})
+    res.json({result: true, info: scheduleInfo})
   });
 }
