@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   schedule: [],
   isFetching: false,
   errorMessage: '',
-  layerSchedule: []
+  layerInfo: [],
+  roomInfo: []
 };
 
 const ScheduleReducer = (state = INITIAL_STATE, action: ScheduleAction) => {
@@ -30,7 +31,8 @@ const ScheduleReducer = (state = INITIAL_STATE, action: ScheduleAction) => {
     case ScheduleActionTypes.GET_LAYER_SCHEDULE:
       return {
         ...state,
-        layerSchedule: action.payload
+        layerInfo: action.payload.layerSchedule,
+        roomInfo: action.payload.layerRoom
       }
     default:
       return state;

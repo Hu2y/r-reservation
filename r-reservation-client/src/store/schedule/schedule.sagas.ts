@@ -10,7 +10,7 @@ export function* fetchSchedule() {
     yield put(fetchScheduleSuccess(data));
   } catch (error) {
     yield put(fetchScheduleFailure(error))
-  }
+  };
 };
 
 export function* fetchScheduleStart() {

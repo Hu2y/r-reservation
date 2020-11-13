@@ -36,5 +36,6 @@ export const searchUserTeam = (email: string, members: any) => {
 
 export const searchReservationInfo = (reservation: any, layer: string) => {
   const result = reservation.filter((room: any) => room.layer == layer);
-  return result[0].scheduleData;
+  console.log('layerInfo', result[0])
+  return result[0];
 };
